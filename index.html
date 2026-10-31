@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="SBA Solutions builds web apps, mobile apps, ERP and marketing for growing businesses.">
+<title>SBA Solutions</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one ruled column. Hero states the offer, services sit in a hairline grid
+   (no boxed cards), then a short about block and a single contact band. */
+:root {
+  --bg: oklch(0.985 0.006 200);
+  --band: oklch(0.96 0.012 200);
+  --fg: oklch(0.22 0.03 235);
+  --muted: oklch(0.44 0.025 230);
+  --line: oklch(0.89 0.012 210);
+  --accent: oklch(0.5 0.1 195);
+  --on-accent: oklch(0.99 0.005 200);
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: oklch(0.19 0.02 225);
+    --band: oklch(0.225 0.025 225);
+    --fg: oklch(0.95 0.01 200);
+    --muted: oklch(0.74 0.02 215);
+    --line: oklch(0.32 0.025 225);
+    --accent: oklch(0.78 0.12 190);
+    --on-accent: oklch(0.2 0.03 225);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: oklch(0.19 0.02 225);
+  --band: oklch(0.225 0.025 225);
+  --fg: oklch(0.95 0.01 200);
+  --muted: oklch(0.74 0.02 215);
+  --line: oklch(0.32 0.025 225);
+  --accent: oklch(0.78 0.12 190);
+  --on-accent: oklch(0.2 0.03 225);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: -0.02em; line-height: 1.08; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+.wrap {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap > * { min-width: 0; }
+
+/* Header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; }
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; display: inline-flex; align-items: baseline; gap: .45rem; }
+.brand b { color: var(--accent); font-weight: 800; }
+.nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav a:not(.btn) { text-decoration: none; color: var(--muted); font-size: .95rem; }
+.nav a:not(.btn):hover { color: var(--fg); text-decoration: underline; text-underline-offset: 4px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .7rem 1.2rem; border-radius: 6px; font: 600 .95rem/1 var(--font-body);
+  text-decoration: none; border: 1px solid var(--accent); background: var(--accent); color: var(--on-accent);
+  cursor: pointer; transition: filter .15s ease-out;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--fg); filter: none; }
+
+/* Hero */
+.hero { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(2.5rem, 6vw, 4.5rem); }
+.eyebrow { font: 500 .78rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; }
+.hero h1 { font-size: clamp(2.5rem, 7.2vw, 5.25rem); font-weight: 700; max-width: 16ch; }
+.hero .lead { margin-top: 1.5rem; max-width: 40rem; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); }
+.cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.stack { margin-top: 3rem; padding-top: 1.1rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; font: 400 .82rem/1.4 var(--font-mono); color: var(--muted); }
+
+/* Services */
+.band { background: var(--band); }
+.section { padding-block: clamp(3rem, 7vw, 5.5rem); }
+.sec-head { display: grid; gap: .9rem; max-width: 38rem; margin-bottom: 2.5rem; }
+.sec-head h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); font-weight: 700; }
+.sec-head p { color: var(--muted); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.svc { background: var(--bg); padding: 1.6rem 1.5rem 1.7rem; display: grid; gap: .7rem; align-content: start; }
+.svc svg { width: 1.7rem; height: 1.7rem; stroke: var(--accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; margin-bottom: .4rem; }
+.svc h3 { font-size: 1.2rem; font-weight: 650; letter-spacing: -0.01em; }
+.svc p { color: var(--muted); font-size: .97rem; line-height: 1.55; }
+
+/* About */
+.about { display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 52rem) { .about { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 4rem; } }
+.points { display: grid; gap: 0; }
+.point { padding-block: 1.25rem; border-top: 1px solid var(--line); display: grid; gap: .35rem; }
+.point:last-child { border-bottom: 1px solid var(--line); }
+.point h3 { font-size: 1.15rem; font-weight: 650; }
+.point p { color: var(--muted); }
+
+/* Contact */
+.contact { display: grid; gap: 1.6rem; max-width: 40rem; }
+.contact h2 { font-size: clamp(2rem, 4.8vw, 3.4rem); font-weight: 700; }
+.contact p { color: var(--muted); }
+.addr { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding-block: 1.5rem 2rem; color: var(--muted); font-size: .9rem; }
+
+@media (max-width: 36rem) {
+  .nav a:not(.btn) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <a class="brand" href="#top"><b>SBA</b> Solutions</a>
+  <nav class="nav" aria-label="Main">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a class="btn" href="mailto:baralswaraj40@gmail.com">Contact us</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <p class="eyebrow">Software, web and growth</p>
+    <h1>Software and websites that keep your business running.</h1>
+    <p class="lead">SBA Solutions designs, builds and maintains web apps, mobile apps and business systems, then helps the right customers find them.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:baralswaraj40@gmail.com">Contact us</a>
+      <a class="btn ghost" href="#services">See what we build</a>
+    </div>
+    <div class="stack" aria-label="Technologies we work with">
+      <span>React</span><span>Node.js</span><span>Python</span><span>TypeScript</span><span>MySQL / Postgres</span><span>Android and iOS</span><span>AWS</span>
+    </div>
+  </section>
+
+  <section class="band" id="services">
+    <div class="wrap section">
+      <div class="sec-head">
+        <h2>Everything from the first screen to the monthly report</h2>
+        <p>Pick one service or combine them. Each is scoped, priced and agreed before work starts.</p>
+      </div>
+      <div class="grid">
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>
+          <h3>Web development</h3>
+          <p>Fast, secure web applications in React and Node.js, built to handle real users and grow with them.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 9h18M7 14h5"/></svg>
+          <h3>Software development</h3>
+          <p>Custom internal tools and business software, written in plain, well-documented code your next developer can pick up.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8a1 1 0 011 1v16a1 1 0 01-1 1H8a1 1 0 01-1-1V4a1 1 0 011-1zM11 18h2"/></svg>
+          <h3>Mobile applications</h3>
+          <p>Android and iOS apps that share one backend with your website, with push notifications and offline-friendly screens.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10H7zM10 10h4v4h-4zM12 3v4M12 17v4M3 12h4M17 12h4"/></svg>
+          <h3>Artificial intelligence</h3>
+          <p>Document search, data extraction, chat assistants and workflow automation, added where they save your team real hours.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+          <h3>ERP development</h3>
+          <p>Sales, stock, accounts and HR in one system, with GST invoicing, e-way bills and Tally-friendly exports for Indian businesses.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 11h11l2-8H6M9 20h.01M17 20h.01"/></svg>
+          <h3>E-commerce development</h3>
+          <p>Online stores with catalogue variants, payments, stock sync and order tracking that match how you actually sell.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v16H3zM3 9h18M9 9v11"/></svg>
+          <h3>Website design</h3>
+          <p>Clear, responsive layouts that look right on a phone first and make it easy for visitors to get in touch.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 17a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM15.5 15.5L21 21"/></svg>
+          <h3>SEO optimization</h3>
+          <p>Technical fixes, keyword research and useful content that move you up search results for the terms customers use.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h3l8 4V6L7 10H4zM18 9a4 4 0 010 6"/></svg>
+          <h3>Digital marketing</h3>
+          <p>Google and Meta campaigns with conversion tracking, so you can see which spend brings in enquiries.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg>
+          <h3>Social media optimization</h3>
+          <p>Profiles, content calendars and community replies set up so your brand looks consistent and active on each platform.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M2 20h20"/></svg>
+          <h3>Social media marketing</h3>
+          <p>Posts, short video and paid social that bring new audiences in and send them to your website.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18v12H3zM8 8V5h8v3M3 13h18"/></svg>
+          <h3>Business consulting</h3>
+          <p>A second opinion on which systems to build, buy or skip, before you commit budget.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap section about">
+      <div class="sec-head" style="margin-bottom:0">
+        <h2>A small team you can reach directly</h2>
+        <p>SBA Solutions is a small engineering studio. You talk to the people writing your software, and you keep full ownership of what we build.</p>
+      </div>
+      <div class="points">
+        <div class="point">
+          <h3>Scope agreed first</h3>
+          <p>We write down what gets built, by when and for how much, before the first line of code.</p>
+        </div>
+        <div class="point">
+          <h3>Built to be maintained</h3>
+          <p>Standard tools, clean structure and documentation, so you are never locked in to us.</p>
+        </div>
+        <div class="point">
+          <h3>Support after launch</h3>
+          <p>Hosting, backups, fixes and small changes under a simple monthly plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="contact">
+    <div class="wrap section">
+      <div class="contact">
+        <h2>Tell us what you need built</h2>
+        <p>Send a short note about your business and what you want to fix. We reply with questions or a proposal.</p>
+        <div class="addr">
+          <a class="btn" href="mailto:baralswaraj40@gmail.com">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 SBA Solutions</span>
+  </div>
+</footer>
+
+
+</body>
+</html>
