@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="SBA Solutions builds web apps, mobile apps, ERP and marketing for growing businesses.">
+<link rel="icon" type="image/png" href="logo.png">
 <title>SBA Solutions</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
@@ -71,8 +72,13 @@ a { color: inherit; }
 
 /* Header */
 .top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; }
-.brand { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; display: inline-flex; align-items: baseline; gap: .45rem; }
-.brand b { color: var(--accent); font-weight: 800; }
+.brand { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; }
+.brand img { height: 2.5rem; width: auto; display: block; }
+.brand .wordmark { height: 2.1rem; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .brand img { filter: invert(1); }
+}
+:root[data-theme="dark"] .brand img { filter: invert(1); }
 .nav { display: flex; align-items: center; gap: 1.5rem; }
 .nav a:not(.btn) { text-decoration: none; color: var(--muted); font-size: .95rem; }
 .nav a:not(.btn):hover { color: var(--fg); text-decoration: underline; text-underline-offset: 4px; }
@@ -144,11 +150,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 <body>
 
 <header class="wrap top">
-  <a class="brand" href="#top"><b>SBA</b> Solutions</a>
+  <a class="brand" href="#top">
+    <img src="logo.png" alt="" width="153" height="153">
+    <img class="wordmark" src="wordmark.png" alt="SBA Solutions" width="818" height="300">
+  </a>
   <nav class="nav" aria-label="Main">
     <a href="#services">Services</a>
     <a href="#about">About</a>
-    <a class="btn" href="mailto:baralswaraj40@gmail.com">Contact us</a>
+    <a class="btn" href="mailto:support@sbasolutions.in">Contact us</a>
   </nav>
 </header>
 
@@ -158,7 +167,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <h1>Software and websites that keep your business running.</h1>
     <p class="lead">SBA Solutions designs, builds and maintains web apps, mobile apps and business systems, then helps the right customers find them.</p>
     <div class="cta">
-      <a class="btn" href="mailto:baralswaraj40@gmail.com">Contact us</a>
+      <a class="btn" href="mailto:support@sbasolutions.in">Contact us</a>
       <a class="btn ghost" href="#services">See what we build</a>
     </div>
     <div class="stack" aria-label="Technologies we work with">
@@ -266,7 +275,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <h2>Tell us what you need built</h2>
         <p>Send a short note about your business and what you want to fix. We reply with questions or a proposal.</p>
         <div class="addr">
-          <a class="btn" href="mailto:baralswaraj40@gmail.com">Contact us</a>
+          <a class="btn" href="mailto:support@sbasolutions.in">Contact us</a>
         </div>
       </div>
     </div>
